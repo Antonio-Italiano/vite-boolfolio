@@ -15,10 +15,10 @@ export default {
         <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item d-flex">
-                <router-link to="/" class="nav-link active" aria-current="page">Home</router-link>
+                <router-link to="/" class="nav-link">Home</router-link>
             </li>
             <li class="nav-item d-flex">
-                <router-link to="/contact" class="nav-link active" aria-current="page">Contact</router-link>
+                <router-link to="/contact" class="nav-link">Contact</router-link>
             </li>
         </ul>
         </div>
