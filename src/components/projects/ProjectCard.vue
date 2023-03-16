@@ -18,6 +18,11 @@ export default {
             if (seconds < 10) seconds = "0" + seconds;
 
             return `${day}/${month}/${year} - ${hours}:${minutes}:${seconds}`;
+        },
+        abstract() {
+
+            const abstract = this.project.description.slice(0, 200)
+            return abstract + '...';
         }
     }
 }
@@ -30,7 +35,7 @@ export default {
             <h2>{{project.title}}</h2>
         </div>
         <div class="card-body">
-            <p>{{project.description}}</p>
+            <p>{{abstract}}</p>
         </div>
         <div class="card-footer d-flex justify-content-between">
             <p>{{project.slug}}</p>
