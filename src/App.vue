@@ -7,13 +7,19 @@ export default {
   name: 'App',
   components: { AppHeader, ProjectList },
   data: () => ({
-    projects: []
+    projects: [],
+    isLoading: false,
   }),
   methods: {
     fetchProjects() {
+      this.isLoading = true;
       axios.get(apiBaseUrl + 'projects').then(res => {
         this.projects = res.data;
-      })
+      }).catch((err) => {
+        console.error(err);
+      }).then(() => {
+        this.isLoading = false;
+      });
     }
   },
   created() {
@@ -26,7 +32,8 @@ export default {
 <template>
   <app-header></app-header>
   <main>
-    <project-list :projects="projects"></project-list>
+    <app-loader v-if="isLoading"></app-loader>
+    <project-list v-else :projects="projects"></project-list>
   </main>
 </template>
 
