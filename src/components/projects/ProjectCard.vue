@@ -1,7 +1,10 @@
 <script>
 export default {
     name: 'ProjectCard',
-    props: { project: Object },
+    props: {
+        project: Object,
+        isDetail: Boolean,
+    },
     computed: {
         formatDate() {
             const date = new Date(this.project.updated_at);
@@ -31,15 +34,20 @@ export default {
 <template lang="">
 
     <div class="card m-5">
-        <div class="card-header">
+        <div class="card-header d-flex justify-content-between">
             <h2>{{project.title}}</h2>
         </div>
+
         <div class="card-body">
-            <p>{{abstract}}</p>
+            <p>{{ isDetail ? project.description : abstract}}</p>
         </div>
-        <div class="card-footer d-flex justify-content-between">
-            <p>{{project.slug}}</p>
-            <time>{{formatDate}}</time>
+        <div class="card-footer d-flex align-items-center justify-content-between">
+            <div>
+
+                <p>{{project.slug}}</p>
+                <time>{{formatDate}}</time>
+            </div>
+            <router-link v-if="!isDetail" class="btn btn-primary" :to="{name: 'project-detail', params: {slug: project.slug}}">Vedi</router-link>
         </div>
     </div>
 </template>
